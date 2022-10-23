@@ -3,6 +3,7 @@ import Endereco from "./endereco"
 import Telefone from "./telefone"
 
 export default class Cliente {
+    
     private nome: string
     private nomeSocial: string
     private dataNascimento: Date

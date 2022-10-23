@@ -12,7 +12,7 @@ export default class CadastroPessoaFisica extends Processo {
     processar(): void {
         let numero = this.entrada.receberTexto('Qual o número do documento?')
         let dataExpedicao = this.entrada.receberData('Qual a data de expedição do documento?')
-        let PessoaFisica = new Documento(numero, TipoDocumento.Passaporte, dataExpedicao)
+        let PessoaFisica = new Documento(numero, TipoDocumento.CPF, dataExpedicao)
         this.cliente.Documentos.push(PessoaFisica)
     }
 }

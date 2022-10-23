@@ -28,9 +28,10 @@ export default class CadastroDependente extends Processo {
         let nomeSocial = this.entrada.receberTexto('Qual o nome social do novo cliente?')
         let dataNascimento = this.entrada.receberData('Qual a data de nascimento?')
         let dependente = new Cliente(nome, nomeSocial, dataNascimento)
+        
         this.clientes.forEach(cliente =>{
             if(Titular === cliente.Nome){
-                this.ClienteTitular= cliente
+                this.ClienteTitular = cliente
             }
         })
         console.log(this.ClienteTitular.Endereco)
@@ -41,6 +42,7 @@ export default class CadastroDependente extends Processo {
         this.processo = new CadastrarDocumentosCliente(dependente)
         this.processo.processar()
 
+        
         let armazem = Armazem.InstanciaUnica
         armazem.Clientes.push(dependente)
 

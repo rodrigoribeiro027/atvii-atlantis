@@ -16,6 +16,10 @@ export default class TipoListagemClientes extends Processo {
                 this.processo = new ListagemTitulares()
                 this.processo.processar()
                 break;
+            case 2:      //Todos os dependentes de um titular específico
+                this.processo
+                this.processo.processar()
+                break;
         
             default:
                 console.log('Opção não entendida... :(')
