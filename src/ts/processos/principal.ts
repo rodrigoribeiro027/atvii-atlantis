@@ -1,8 +1,11 @@
 import Processo from "../abstracoes/processo"
 import MenuPrincipal from "../menus/menuPricipal"
 import DeletarCliente from "./deletarTitular"
+import ListagemDependentes from "./listagemDependentes"
+import TiposBusca from "./tipoBusca"
 import TipoCadastroCliente from "./tipoCadastroCliente"
 import TiposDeletar from "./tipoDeletar"
+import TipoEdicao from "./tipoEdicao"
 import TipoListagemClientes from "./tipoListagemClientes"
 
 export default class Principal extends Processo {
@@ -20,17 +23,26 @@ export default class Principal extends Processo {
                 this.processo.processar()
                 break
             case 2:
-                // Tipos de Edicao Aki chamar os TIPOS  nao esquecer
+                this.processo = new TipoEdicao()
+                this.processo.processar()
                 break
             case 3:
                 this.processo = new TipoListagemClientes()
+                this.processo.processar()
+                break
+            case 4:
+                this.processo = new TiposBusca()
+                this.processo.processar()
+                break
+            case 5:
+                this.processo = new ListagemDependentes()
                 this.processo.processar()
                 break
             case 6:
                 this.processo = new TiposDeletar()
                 this.processo.processar()
                 break
-
+            
             case 0:
                 this.execucao = false
                 console.log('Até logo!')

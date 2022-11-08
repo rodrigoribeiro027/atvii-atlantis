@@ -34,17 +34,13 @@ export default class CadastroDependente extends Processo {
                 this.ClienteTitular = cliente
             }
         })
-        console.log(this.ClienteTitular.Endereco)
         dependente.Endereco = this.ClienteTitular.Endereco.clonar() as Endereco
         console.log(dependente.Endereco)
         dependente.ClienteTitular = this.ClienteTitular
-
+        this.ClienteTitular.Dependentes.push(dependente)
         this.processo = new CadastrarDocumentosCliente(dependente)
         this.processo.processar()
-
-        
-        let armazem = Armazem.InstanciaUnica
-        armazem.Clientes.push(dependente)
+        this.clientes.push(dependente)
 
         console.log('Finalizando o cadastro do cliente...')
     }
