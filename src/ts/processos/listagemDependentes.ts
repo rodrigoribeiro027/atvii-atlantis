@@ -23,7 +23,7 @@ export default class ListagemDependentes extends Processo {
     }
     private titular(cliente: Cliente): boolean {
         let verificacao = false
-        if (cliente.Titular == cliente.Titular) {
+        if (cliente.Titular != null) {
             verificacao = true
         }
         return verificacao

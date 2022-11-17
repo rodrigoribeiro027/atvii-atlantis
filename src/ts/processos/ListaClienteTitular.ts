@@ -27,10 +27,6 @@ export default class ListarTitularEspecifico extends Processo {
                 this.ClienteTitular = cliente
             }
         })
-
-        let armazem = Armazem.InstanciaUnica
-        armazem.Clientes.push(this.ClienteTitular)
-
         console.log('Encontramos o Cliente\n',this.ClienteTitular)
     }
 }

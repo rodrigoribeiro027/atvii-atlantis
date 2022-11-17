@@ -22,6 +22,7 @@ export default class DeletarDependente extends Processo {
         
         let Indice = this.clientes.findIndex(i => i.Nome === Dependente)
         this.clientes.splice(Indice,1)
+    
         console.log(' \nO cliente Foi Deleta Com Sucesso...')
     }
 }

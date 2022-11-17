@@ -25,7 +25,6 @@ export default class ListarDependenteEspecifico extends Processo {
         this.clientes.forEach(cliente =>{
             if(Titular === cliente.Nome){
                 this.ClienteTitular = cliente
-                console.log(cliente)
             }
         })
         console.log('Encontramos o Cliente\n',this.ClienteTitular.Dependentes)
