@@ -2,8 +2,8 @@ import Processo from "../abstracoes/processo";
 import Armazem from "../dominio/armazem";
 import MenuTipoEditar from "../menus/menuTipoEditar";
 import Cliente from "../modelos/cliente";
-import CadastrarDocumentosCliente from "./cadastrarDocumentosCliente";
-import CadastroEnderecoTitular from "./cadastroEnderecoTitular";
+import Documento from "../modelos/documento";
+
 
 export default class EditarClienteTitular extends Processo {
     private cliente!:Cliente
@@ -14,22 +14,17 @@ export default class EditarClienteTitular extends Processo {
     }
 
     processar(): void {
-        console.log('Iniciando o cadastro de um novo cliente...')
+        console.log('Iniciando o cadastro de um novo cliente')
         
-        let nome = this.entrada.receberTexto('Qual o nome do novo cliente?')
-        let nomeSocial = this.entrada.receberTexto('Qual o nome social do novo cliente?')
-        let dataNascimento = this.entrada.receberData('Qual a data de nascimento?')
-        let cliente = new Cliente(nome, nomeSocial, dataNascimento)
+        let novoNome = this.entrada.receberTexto('Digite o novo nome:')
+        this.cliente.setNome = novoNome || this.cliente.Nome
 
-        this.processo = new CadastroEnderecoTitular(cliente)
-        this.processo.processar()
+        let novoNomeSocial = this.entrada.receberTexto('Digite o novo nome social:')
+        this.cliente.setNomeSocial = novoNomeSocial || this.cliente.NomeSocial
 
-        this.processo = new CadastrarDocumentosCliente(cliente)
-        this.processo.processar()
-
-        let armazem = Armazem.InstanciaUnica
-        armazem.Clientes.push(cliente)
-
+        let novaDataNascimento = this.entrada.receberData('Digite a nova data de nascimento:')
+        this.cliente.setDataNascimento = novaDataNascimento || this.cliente.DataNascimento
+        
         console.log('Finalizando o cadastro do cliente...')
     }
 }

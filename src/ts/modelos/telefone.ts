@@ -8,12 +8,26 @@ export default class Telefone {
         this.ddd = ddd
         this.numero = numero
     }
+    public get Ddd(){
+         return this.ddd 
+    }
 
-    public get Ddd() { return this.ddd }
-    public get Numero() { return this.numero }
+    public get Numero(){ 
+        return this.numero 
+    }
     
+    public set setDDD(ddd:string) {
+         this.ddd = ddd 
+    }
+
+    public set setNumero(numero:string) {
+         this.numero = numero 
+    }
+
+
     public clonar(): Prototipo {
         let telefone = new Telefone(this.ddd, this.numero)
         return telefone
     }
+
 }
