@@ -1,28 +1,47 @@
 import Processo from "../../abstracoes/processo";
 import Armazem from "../../dominio/armazem";
 import Cliente from "../../modelos/cliente";
-import Impressor from "../../interfaces/impressor";
-import ImpressoraCliente from "../../impressores/impressorCliente";
+
 
 export default class DeletarDependente extends Processo {
-    private clientes:Cliente[] = []
-    private impressor!:Impressor
-    
+    private clientes: Cliente[]
     constructor() {
         super()
-        this.clientes = Armazem.InstanciaUnica.Clientes
+        this.clientes = Armazem.InstanciaUnica.Clientes;
     }
-    processar(): void {
 
-        this.clientes.forEach(cliente => {
-            this.impressor = new ImpressoraCliente(cliente)
-            console.log(this.impressor.imprimir())
-        })
-        let Dependente = this.entrada.receberTexto('Qual o nome do Dependente?')
-        
-        let Indice = this.clientes.findIndex(i => i.Nome === Dependente)
-        this.clientes.splice(Indice,1)
-    
-        console.log(' \nO cliente Foi Deleta Com Sucesso...')
+    processar(): void {
+        console.clear()
+        var processo = false
+
+        for (let index = 0; index < this.clientes.length; index++) 
+        {
+            for (let indexDep = 0; indexDep < this.clientes[index].Dependentes.length; indexDep++)
+            console.log(`| - ${this.clientes[index].Dependentes[indexDep].Nome}`);
+        }
+
+        let dependente = this.entrada.receberTexto('Insira o número do Documento do Dependente:')
+
+        for (let index = 0; index < this.clientes.length; index++) {
+            for (let indexDep = 0; indexDep < this.clientes[index].Dependentes.length; indexDep++)
+            {
+                for (let indexDoc = 0; indexDoc < this.clientes[index].Dependentes[indexDep].Documentos.length; indexDoc++) 
+                {
+                    
+                    if (dependente == this.clientes[index].Dependentes[indexDep].Documentos[indexDoc].Numero) 
+                    {
+                        processo = true
+                        this.clientes[index].Dependentes.splice(index, 1)
+                        console.log('Cliente Dependente Excluído.');
+                        
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (processo != true) {
+            console.log('\n***** |Cliente não encontrado| *****')
+        }
     }
 }

@@ -1,27 +1,45 @@
 import Processo from "../abstracoes/processo";
 import Armazem from "../dominio/armazem";
 import Cliente from "../modelos/cliente";
-import Impressor from "../interfaces/impressor";
-import ImpressoraCliente from "../impressores/impressorCliente";
+
 
 export default class DeletarDependente extends Processo {
-    private clientes:Cliente[] = []
-    private impressor!:Impressor
-    
+    private clientes: Cliente[]
     constructor() {
         super()
-        this.clientes = Armazem.InstanciaUnica.Clientes
+        this.clientes = Armazem.InstanciaUnica.Clientes;
     }
-    processar(): void {
 
-        this.clientes.forEach(cliente => {
-            this.impressor = new ImpressoraCliente(cliente)
-            console.log(this.impressor.imprimir())
-        })
-        let Dependente = this.entrada.receberTexto('Qual o nome do seu Titular?')
-        
-        let Indice = this.clientes.findIndex(i => i.Nome === Dependente)
-        this.clientes.splice(Indice,1)
-        console.log(Indice + ' \nO cliente Foi Deleta Com Sucesso...')
+    processar(): void {
+        console.clear()
+        var processo = false
+
+        for (let index = 0; index < this.clientes.length; index++) 
+        {
+            console.log(`| ${index + 1}: ${this.clientes[index].Nome}`);
+        }
+
+        let cliente = this.entrada.receberTexto('| Insira o número do documento do Titular:')
+
+        for (let index = 0; index < this.clientes.length; index++) 
+
+        {
+            for (let indexDoc = 0; indexDoc < this.clientes[index].Documentos.length; indexDoc++) 
+            {
+                if (cliente == this.clientes[index].Documentos[indexDoc].Numero)
+                {
+                    processo = true
+
+                    this.clientes.splice(index, 1)
+                    
+                    console.log('Cliente Titular Excluído.');
+                    
+                    break;
+                }
+            }
+        }
+        if (processo != true) {
+            console.log('\n***** |Cliente não encontrado| *****')
+        }
     }
 }

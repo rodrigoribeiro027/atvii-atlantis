@@ -16,8 +16,10 @@ export default class ListarDependenteEspecifico extends Processo {
     processar(): void {
 
         this.clientes.forEach(cliente => {
+            if (cliente.Titular != null) {
             this.impressor = new ImpressoraCliente(cliente)
             console.log(this.impressor.imprimir())
+            }
         })
         let Titular = this.entrada.receberTexto('Qual o nome do Titular?')
         console.log('Iniciando a Busca de um cliente...')

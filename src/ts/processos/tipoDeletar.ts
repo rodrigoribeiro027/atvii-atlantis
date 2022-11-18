@@ -1,9 +1,6 @@
 import Processo from "../abstracoes/processo";
-import MenuTipoCadastroCliente from "../menus/menuTipoCadastroCliente";
 import MenuTipoDeletar from "../menus/menuTipoDeletar";
-import CadastroClienteTitular from "./cadastroClienteTitular";
 import deletarTitular from "./deletarTitular";
-import CadastroDependente from "./Dependente/cadastroDependente";
 import DeletarDependente from "./Dependente/deletarDependente";
 
 export default class TiposDeletar extends Processo {

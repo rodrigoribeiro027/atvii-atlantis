@@ -19,8 +19,10 @@ export default class CadastroDependente extends Processo {
     processar(): void {
 
         this.clientes.forEach(cliente => {
-            this.impressor = new ImpressoraCliente(cliente)
-            console.log(this.impressor.imprimir())
+            if (cliente.Titular == undefined) {                
+                this.impressor = new ImpressoraCliente(cliente)
+                console.log(this.impressor.imprimir())
+            }
         })
         let Titular = this.entrada.receberTexto('Qual o nome do seu Titular?')
         console.log('Iniciando o cadastro de um novo cliente...')
